@@ -7,33 +7,33 @@ class Solution{
 public:
 	int LongestConsecutive(vector<int> &nums)
 	{
-		int longest = 0;
 		map<int,bool> used;
+		int longest = 0;
 		for(auto num : nums)
-			used[num] = false;
-
-		for(auto num:nums)
 		{
-			int len = 1;
+			used[num] = false;
+		}
+		
+		for(auto num : nums)
+		{
 			if(used[num])
 				continue;
-
-			for(auto tmp = num + 1 ; used.find(tmp) != used.end(); tmp++ )
+			int len = 1;
+			for(auto temp = num + 1 ; used.find(temp) != used.end();temp++)
 			{
-				used[tmp] = true;
+				used[temp] = true;
 				len++;
 			}
-			for(auto tmp = num - 1 ; used.find(tmp)!= used.end();tmp-- )
+			for(auto temp = num - 1; used.find(temp) != used.end();temp-- )
 			{
-				used[tmp] = true;
-				len++
+				used[temp] = true;
+				len++;
 			}
-			
 			if(len > longest)
 			{
 				longest = len;
 			}
-		}		
+		}
 		return longest;
 	}
 };
@@ -41,7 +41,7 @@ public:
 
 int main(int argc,char *argv[])
 {
-	vector<int> nums = {100,2,4,200,3,1};
+	vector<int> nums = {100,2,4,200,3,1,5};
 	Solution s;
 	cout << s.LongestConsecutive(nums) << endl;
 	
