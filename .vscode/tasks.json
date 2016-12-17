@@ -1,7 +1,7 @@
 {
     "version": "0.1.0",
     "command": "g++",
-    "args": ["-g", "${file}", "-o", "${file}.o"],
+    "args": ["-g","-std=c++11", "${file}", "-o", "${file}.o"],
     "problemMatcher": {
         "owner": "cpp",
         "fileLocation": ["relative", "${workspaceRoot}"],
