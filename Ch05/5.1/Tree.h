@@ -5,45 +5,29 @@
 #include <string>
 #include <algorithm>
 #include <queue>
+#include <stack>
 using namespace std;
 
 struct TreeNode{
     int value;
     TreeNode *left;
     TreeNode *right;
+    TreeNode *next;
     TreeNode(int v):value(v),left(nullptr),right(nullptr){}
 };
 
-TreeNode *makeTree()
+TreeNode* MakeTree(TreeNode *root,vector<int> &vi,int pos)
 {
-    TreeNode *root = nullptr;
-    static int i = 0;
-
-    root = new TreeNode(3);
-    root->left = new TreeNode(9);
-    root->right = new TreeNode(20);
-
-    root->right->left = new TreeNode(15);
-    root->right->right = new TreeNode(7);
-
+    if(vi[pos] == '#' || pos >= vi.size() )
+        return NULL;
+    if(root == NULL)
+    {
+        root = new TreeNode(vi[pos]);
+    }
+    root->left = MakeTree(root->left,vi,2*pos+1);
+    root->right = MakeTree(root->right,vi,2*pos+2);
     return root;
 }
-
-TreeNode *makeTree1()
-{
-    TreeNode *root = nullptr;
-    static int i = 0;
-
-    root = new TreeNode(3);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(4);
-
-    root->right->left = new TreeNode(1);
-    root->right->right = new TreeNode(7);
-
-    return root;
-}
-
 
 void ListAllNode(TreeNode *root)
 {

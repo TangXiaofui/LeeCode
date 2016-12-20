@@ -2,24 +2,24 @@
 
 class Solution{
 public:
-    void RecoverNode(TreeNode *root)
+    vector<int> inorderTraversal(TreeNode *root)
     {
-        TreeNode *prev,*tmp = NULL;
-        pair<TreeNode *,TreeNode *> broken;
+        vector<int> result;
+        TreeNode *prev = NULL;
         while(root)
         {
             if(root->left == NULL)
             {
-                detect(broken,tmp,root);
-                tmp = root;
+                result.push_back(root->value);
                 root = root->right;
             }
             else
             {
                 prev = root->left;
                 while(prev->right != NULL && prev->right != root)
+                {
                     prev = prev->right;
-                
+                }
                 if(prev->right == NULL)
                 {
                     prev->right = root;
@@ -27,41 +27,29 @@ public:
                 }
                 else
                 {
-                    detect(broken,tmp,root);
-                    tmp = root;
+                    result.push_back(root->value);
                     prev->right = NULL;
                     root = root->right;
                 }
             }
         }
-        //swap(broken.first->value,broken.second->value);
+        return result;
     }
-    void detect(pair<TreeNode *,TreeNode *> &broken,TreeNode* first,TreeNode *second)
-    {   
-        if(first != NULL && first->value > second->value)
-        {
-            // if(broken.first == NULL)
-            //     broken.first = first;
-            swap(first->value,second->value);
-
-        }
-        broken.second = second;
-    }
-   
 };
-
 
 int main(int argc,char *argv[])
 {
-    vector<int> vi = {5,2,6,'#','#',7,8};
+    vector<int> vi = {3,9,20,'#','#',15,7};
     TreeNode *root = NULL;
     root = MakeTree(root,vi,0);
     ListAllNode(root);
     cout << endl;
 
     Solution s;
-    s.RecoverNode(root);
-    ListAllNode(root);
+    vector<int> result;
+    result = s.inorderTraversal(root);
+    for(auto e:result)
+        cout << e << " ";
     cout << endl;
     return 0;
 }
