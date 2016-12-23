@@ -18,7 +18,7 @@ struct TreeNode{
 
 TreeNode* MakeTree(TreeNode *root,vector<int> &vi,int pos)
 {
-    if(vi[pos] == '#' || pos >= vi.size() )
+    if(pos >= vi.size() || vi[pos] == '#'  )
         return NULL;
     if(root == NULL)
     {
