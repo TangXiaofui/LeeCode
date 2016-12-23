@@ -38,4 +38,33 @@ void ListAllNode(TreeNode *root)
         ListAllNode(root->right);
     }
 }
+
+void PreListAllNode(TreeNode *root)
+{
+    if(root != nullptr)
+    {
+        cout << root->value << " ";
+        PreListAllNode(root->left);
+        PreListAllNode(root->right);
+    }
+}
+void MidListAllNode(TreeNode *root)
+{
+    if(root != nullptr)
+    {
+        MidListAllNode(root->left);
+        cout << root->value << " ";
+        MidListAllNode(root->right);
+    }
+}
+void PostListAllNode(TreeNode *root)
+{
+    if(root != nullptr)
+    {
+        PostListAllNode(root->left);
+        PostListAllNode(root->right);
+        cout << root->value << " ";
+    }
+}
+
 #endif
