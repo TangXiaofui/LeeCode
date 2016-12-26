@@ -14,7 +14,7 @@ struct TreeNode{
     TreeNode *left;
     TreeNode *right;
     TreeNode *next;
-    TreeNode(int v):value(v),left(nullptr),right(nullptr){}
+    TreeNode(int v):value(v),left(nullptr),right(nullptr),next(nullptr){}
 };
 
 TreeNode* MakeTree(TreeNode *root,vector<int> &vi,int pos)
