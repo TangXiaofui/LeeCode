@@ -29,7 +29,7 @@ public:
 				{
 					board[i][j] = 'O';
 				}
-				if (board[i][j] == 'O')
+				else if (board[i][j] == 'O')
 				{
 					board[i][j] = 'X';
 				}
@@ -52,6 +52,17 @@ public:
 			visit(board,x,y-1,q);
 			visit(board,x,y+1,q);
 		}
+	}
+	void visit(std::vector<std::vector<char>> &board,int row,int col,queue<int> &q)
+	{
+		int m = board.size();
+		int n = board[0].size();
+		if (row < 0 || row > m-1 || col < 0 || col > n-1 || board[row][col] != 'O')
+		{
+			return ;
+		}
+		board[row][col] = '+';
+		q.push(row * n + row);
 	}
 };
 
